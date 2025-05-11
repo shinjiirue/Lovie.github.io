@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Proposal</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background-color: #ffebee;
+        }
+        .g1 {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .group1 {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+            z-index: 100;
+        }
+        .images1, .images2 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        .sad-media {
+            max-width: 150px;
+            margin: 5px;
+            display: none;
+        }
+        .ask {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        .crush {
+            font-size: 20px;
+            color: #e91e63;
+            font-weight: bold;
+        }
+        .btn {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        #btn1, .no-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        #btn1 {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .no-btn {
+            background-color: #f44336;
+            color: white;
+        }
+        #btn1:hover, .no-btn:hover {
+            transform: scale(1.03);
+        }
+        #hands {
+            position: absolute;
+            width: 80px;
+            bottom: -40px;
+            right: -40px;
+            z-index: 11;
+            opacity: 0.8;
+        }
+        .fff {
+            position: fixed;
+            bottom: 5px;
+            right: 5px;
+            color: #888;
+            font-size: 10px;
+        }
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="g1">
+        <!-- First set of No buttons -->
+        <div class="group1">
+            <button class="no-btn">No</button>
+            <button class="no-btn">No</button>
+            <button class="no-btn">No</button>
+            <button class="no-btn">No</button>
+            <button class="no-btn">No</button>
+            <button class="no-btn">No</button>
+        </div>
+        
+        <!-- First set of sad images -->
+        <div class="images1">
+            <img class="sad-media" src="https://c.tenor.com/36JFV8pDtXIAAAAd/sad-your-friends-are-togheter.gif">
+            <img class="sad-media" src="https://c.tenor.com/6CujUsC1CIkAAAAM/crying-black-guy-meme50fps-interpolated-interpolated.gif">
+            <img class="sad-media" src="https://c.tenor.com/dpUQLSpLPzkAAAAd/sad-man-tik-tok-meme.gif">
+        </div>
+        
+        <!-- Main question -->
+        <div class="ask">
+            <p><span class="crush">HI BEBII</span> <br>
+                do you like me?</p>
+            <div class="btn">
+                <button id="btn1">Yes</button>
+                <button class="no-btn">No</button>
+            </div>
+            <img id="hands" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB+UlEQVR4nO2Zz0sUURjHP2+uWlqWmX8oKQ8FQRDVoUMdOnXo0qFDlw5dOnTo0KFDhw5dOnQIiijyUBREUfQHCsJDUBBBUZQ/1tXW3Xk9zLwdd2ZnZ3ZnZt3ZBz7MvHnfeZ/3fWfe9z4zC8YYY4wxxhhjjDHGGGOMqTQh8Bw4BvQBB4F2oBVoAhqBWqAKqAJqgHqgBWgHuoBe4CQwBLwB5oFlIAF2gA3gJzALvAaeAeeBQ0Bd7qQrgX7gHjANbAIJhWUb+AzcBk4ANeUQ0gFcBz4B2xQvIJtt4ANwBWgtlZBO4CbwHdgps5BsNoAJ4BxQX4iQBuAK8AXYLbOIXHaBd8B5oC6fkG7gEbBRZhH5WAceAj35hPQCT4HNMosohE3gEXA4n5BB4DmwVWYRhbIFPAH68gkZAl4C22UWUSjbwCjQn0/IMPAK2CmziELZAV4CJ/IJGQHGgHiZRcSBMaA/n5BzwGtgv8wi9oHXwHA+IReAN8BemUXsA2+BC/mEXALeAXGZRcTAGHA5n5DLwHsgUWYhCfAeuJJPSD/wAYjKLCQBPgJX8wkZAMaBZJlFJMFJ4Go+IUPABJAss4gkmASu5RMyDEwCyTKL2AUmgGv5hIwAU0CyzCJ2gSngRj4hZ4EpYLeMQhJgGriZT8gZ4AOQKqOQFPARuJVPSB/wCUgXKaQKqAZqgTqgHmgAGoEmoBloAVqBNqAD6AK6gR6gFzgCHAW6gUNAB9AKNAH1QE2R8QH8B6V2pX5VZ5VWAAAAAElFTkSuQmCC">
+        </div>
+        
+        <!-- Second set of sad images -->
+        <div class="images2">
+            <img class="sad-media" src="https://c.tenor.com/2roX3xtLbHwAAAAd/cat-crying.gif">
+            <img class="sad-media" src="https://c.tenor.com/0Zg0x7uD4HwAAAAC/sad-man.gif">
+        </div>
+        
+        <!-- Second set of No buttons -->
+        <div class="group1" style="bottom:10px; top:auto;">
+            <button class="no-btn">No</button>
+            <button class="no-btn">No</button>
+            <button class="no-btn">No</button>
+            <button class="no-btn">No</button>
+            <button class="no-btn">No</button>
+            <button class="no-btn">No</button>
+        </div>
+        
+        <!-- Footer -->
+        <div class="fff">
+            <p>Created by Your bebii(Marvien)</p>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const noButtons = document.querySelectorAll('.no-btn');
+            const sadMedia = document.querySelectorAll('.sad-media');
+            const yesButton = document.getElementById('btn1');
+            
+            // Hide all sad media initially
+            sadMedia.forEach(media => media.style.display = 'none');
+            
+            // Make No buttons move randomly
+            noButtons.forEach(button => {
+                button.addEventListener('mouseover', function() {
+                    // Random position within viewport
+                    const randomX = Math.random() * (window.innerWidth - 100);
+                    const randomY = Math.random() * (window.innerHeight - 50);
+                    
+                    this.style.position = 'absolute';
+                    this.style.left = randomX + 'px';
+                    this.style.top = randomY + 'px';
+                    
+                    // Show random sad media
+                    const randomIndex = Math.floor(Math.random() * sadMedia.length);
+                    sadMedia.forEach(m => m.style.display = 'none');
+                    sadMedia[randomIndex].style.display = 'block';
+                });
+                
+                button.addEventListener('click', function() {
+                    alert("Why you say no bebii? 😢");
+                });
+            });
+            
+            // Yes button action
+            yesButton.addEventListener('click', function() {
+                window.location.href = "yes.html";
+            });
+        });
+    </script>
+</body>
+</html>
